@@ -51,14 +51,15 @@ public class RainGame {
 		Zen.setFont("Helvetica-64");
 		while (playerAlive) {
 			
-			if (level < 5)Zen.setColor(0, 0, 0); // Color begins at BLACK
-			if (level >= 5 && level < 15)Zen.setColor(255, 0, 255); // Color at level 10 turns to PINK
-			if (level >= 15 && level < 25)Zen.setColor(0, 250, 0); // Color at level 20 goes to CRAZY GREEN
-			if (level >= 25)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 30+ is RANDOM
+		if (level < 5)Zen.setColor(0, 0, 0); // Color begins at BLACK
+			if (level >= 5 && level < 15)Zen.setColor(255, 0, 255); // Color at level 5 turns to PINK
+			if (level >= 15 && level < 25)Zen.setColor(0, 250, 0); // Color at level 15 goes to CRAZY GREEN
+			if (level >= 25)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 25+ is RANDOM
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
 			Zen.setColor(0, 255, 0);
 			Zen.drawText(text, x, y);
+			if (level >= 15 && level < 25) Zen.setColor(0, 0, 0); // If crazy green screen, changes color of score and level for clarity
 			
 			Zen.drawText("Level: " + level,10,60); //Make sure level is updating
 			Zen.drawText("Score: " + score,10,130); // Make sure score is updating
