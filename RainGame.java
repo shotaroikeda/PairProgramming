@@ -1,6 +1,6 @@
 //UIUC CS125 FALL 2014 MP. File: RainGame.java, CS125 Project: PairProgramming, Version: 2015-02-23T22:06:27-0600.298194661
 /**
- * @author replace-this-with-your-netids-on-this-line-here-with-a-comma-between-them
+ * @author ikeda2, katan2
  */
 public class RainGame {
 
@@ -17,11 +17,14 @@ public class RainGame {
 		int levelcounter = 0; //Keeps count of numbers completed.
 		
 		Zen.setFont("Helvetica-64");
-		
 		boolean playerAlive = Zen.isRunning();
 		
 		while (playerAlive) {
-			Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999));
+			
+			if (level < 10)Zen.setColor(0, 0, 0); // Color begins at BLACK
+			if (level >= 10 && level < 20)Zen.setColor(255, 0, 255); // Color at level 10 turns to PINK
+			if (level >= 20 && level < 30)Zen.setColor(0, 250, 0); // Color at level 20 goes to CRAZY GREEN
+			if (level >= 30)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 30+ is RANDOM
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
 			Zen.setColor(0, 255, 0);
