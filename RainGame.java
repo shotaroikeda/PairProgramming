@@ -80,7 +80,7 @@ public class RainGame {
 			if (text.length() == 0) {
 				x = 0;
 				y = Zen.getZenHeight() / 2;
-				dx = 2 + level;		//make sure the text speeds up with level
+				dx = 8 + level;		//make sure the text speeds up with level
 				dy = 0;
 				text = "" + (int) (Math.random() * 999);
 				long elapsed = System.currentTimeMillis() - startTime;
