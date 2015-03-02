@@ -15,7 +15,6 @@ public class RainGame {
 		int level = 0;
 		long startTime =System.currentTimeMillis();
 		int counter = 0;
-		int myscore = -100;
 		Zen.setFont("Helvetica-64");
 		
 		while (Zen.isRunning()) {
@@ -31,7 +30,7 @@ public class RainGame {
 				score += 3000 / elapsed;
 				counter++;
 				myscore = myscore + 100;
-				if (counter % 2 == 0) level++;
+				if (counter % 5 == 0) level++;
 				
 			}
 			
@@ -46,7 +45,7 @@ public class RainGame {
 			Zen.drawText(text, x, y);
 			
 			Zen.drawText("Level: " + level,10,60);
-			Zen.drawText("Score: " + score,10,130);
+			Zen.drawText("Score: ",10,130);
 			
 			x += dx;
 			y += dy;
