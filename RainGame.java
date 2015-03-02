@@ -10,7 +10,7 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=Zen.getZenHeight() / 2, dx=100, dy=0, score = 0;
+		int x=0, y=Zen.getZenHeight() / 2, dx=2, dy=0, score = 0;
 		String text = "" + (int) (Math.random() * 999); //Initialize text so the score doesn't update without anything done
 		long startTime =System.currentTimeMillis();
 		int level = 0; //Initializes level
@@ -18,25 +18,33 @@ public class RainGame {
 		
 		Zen.setFont("Helvetica-20");
 		boolean playerAlive = Zen.isRunning();
-		
-		
+		boolean levelOK = false;
+		String user = "";
 		
 		// Level Select Screen
 		Zen.setColor(0, 0, 0);
 		Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 		Zen.setColor(0, 255, 0);
-		Zen.drawText("Start at Level 1 or Skip to Level 5? Enter on Keyboard", 80, Zen.getZenHeight() / 3);
-		while (level == 0) {
-			if (Zen.isKeyPressed('1'))
-			{
-				level = 1;
+		Zen.drawText("Enter a number to start the level from.", 80, Zen.getZenHeight() / 3);
+		while (!levelOK) {
+			while (!Zen.isKeyPressed('\n')) {
+				user = Zen.getEditText();
+				Zen.drawText(user, Zen.getZenWidth() / 2, 2* Zen.getZenHeight() / 3);
 			}
-			
-			if (Zen.isKeyPressed('5'))
-			{
-				level = 5;
+			try {
+				int leveloffset = Integer.parseInt(user);
+				if (leveloffset <= 0) throw new NumberFormatException();
+				level += leveloffset;
+				levelOK = true;
+			} catch(NumberFormatException e) {
+				Zen.setColor(0, 0, 0);
+				Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
+				Zen.setColor(0, 255, 0);
+				Zen.drawText("Please try again.", 80, Zen.getZenHeight() / 3);
 			}
+			Zen.setEditText("");
 		}
+		
 		
 		// Game Starts After Level is Selected
 		Zen.setFont("Helvetica-64");
@@ -58,7 +66,7 @@ public class RainGame {
 			y += dy;
 			
 			// Find out what keys the user has been pressing.
-			String user = Zen.getEditText();
+			user = Zen.getEditText();
 			// Reset the keyboard input to an empty string
 			// So next iteration we will only get the most recently pressed keys.
 			Zen.setEditText("");
