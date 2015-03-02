@@ -54,7 +54,7 @@ public class RainGame {
 				if(c == text.charAt(0))
 					text = text.substring(1,text.length()); // all except first character
 			}
-			
+			Zen.flipBuffer(); // Fixes the flicker
 			Zen.sleep(90);// sleep for 90 milliseconds
 
 		}
