@@ -76,6 +76,7 @@ public class RainGame {
 			Zen.flipBuffer(); // Fixes the flicker
 			Zen.sleep(90);// sleep for 90 milliseconds
 		}
+		//Exits the game when the user presses ENTER
 		while (Zen.isRunning()) {
 			if (Zen.isKeyPressed('\n')) {
 				System.exit(0);
