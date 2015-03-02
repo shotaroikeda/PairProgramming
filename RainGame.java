@@ -10,21 +10,42 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=Zen.getZenHeight() / 2, dx=2, dy=0, score = 0;
+		int x=0, y=Zen.getZenHeight() / 2, dx=100, dy=0, score = 0;
 		String text = "" + (int) (Math.random() * 999); //Initialize text so the score doesn't update without anything done
 		long startTime =System.currentTimeMillis();
 		int level = 0; //Initializes level
 		int levelcounter = 0; //Keeps count of numbers completed.
 		
-		Zen.setFont("Helvetica-64");
+		Zen.setFont("Helvetica-20");
 		boolean playerAlive = Zen.isRunning();
 		
+		
+		
+		// Level Select Screen
+		Zen.setColor(0, 0, 0);
+		Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
+		Zen.setColor(0, 255, 0);
+		Zen.drawText("Start at Level 1 or Skip to Level 5? Enter on Keyboard", 80, Zen.getZenHeight() / 3);
+		while (level == 0) {
+			if (Zen.isKeyPressed('1'))
+			{
+				level = 1;
+			}
+			
+			if (Zen.isKeyPressed('5'))
+			{
+				level = 5;
+			}
+		}
+		
+		// Game Starts After Level is Selected
+		Zen.setFont("Helvetica-64");
 		while (playerAlive) {
 			
-			if (level < 10)Zen.setColor(0, 0, 0); // Color begins at BLACK
-			if (level >= 10 && level < 20)Zen.setColor(255, 0, 255); // Color at level 10 turns to PINK
-			if (level >= 20 && level < 30)Zen.setColor(0, 250, 0); // Color at level 20 goes to CRAZY GREEN
-			if (level >= 30)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 30+ is RANDOM
+			if (level < 5)Zen.setColor(0, 0, 0); // Color begins at BLACK
+			if (level >= 5 && level < 10)Zen.setColor(255, 0, 255); // Color at level 10 turns to PINK
+			if (level >= 10 && level < 15)Zen.setColor(0, 250, 0); // Color at level 20 goes to CRAZY GREEN
+			if (level >= 15)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 30+ is RANDOM
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
 			Zen.setColor(0, 255, 0);
@@ -76,7 +97,6 @@ public class RainGame {
 			Zen.flipBuffer(); // Fixes the flicker
 			Zen.sleep(90);// sleep for 90 milliseconds
 		}
-		//Exits the game when the user presses ENTER
 		while (Zen.isRunning()) {
 			if (Zen.isKeyPressed('\n')) {
 				System.exit(0);
