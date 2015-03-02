@@ -13,6 +13,8 @@ public class RainGame {
 		int x=0, y=0, dx=0, dy=0, score = 0;
 		String text = "";
 		long startTime =System.currentTimeMillis();
+		int level = 0;
+		int levelcounter = 0;
 		
 		Zen.setFont("Helvetica-64");
 		while (Zen.isRunning()) {
@@ -26,6 +28,8 @@ public class RainGame {
 				long elapsed = System.currentTimeMillis() - startTime;
 				startTime = System.currentTimeMillis();
 				score += 3000 / elapsed;
+				levelcounter++;
+				if (levelcounter % 5 == 0) level++;
 			}
 			Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999));
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
@@ -33,7 +37,7 @@ public class RainGame {
 			Zen.setColor(0, 255, 0);
 			Zen.drawText(text, x, y);
 			
-			Zen.drawText("Level: 0",10,30);
+			Zen.drawText("Level: " + level,10,30);
 			Zen.drawText("Score: 0",10,60);
 			
 			x += dx;
