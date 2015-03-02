@@ -31,7 +31,11 @@ public class RainGame {
 				levelcounter++; // Adds to counter
 				if (levelcounter % 5 == 0) level++; //every 5 numbers the level goes up
 			}
-			Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999));
+			
+			if (level < 10)Zen.setColor(0, 0, 0); // Color begins at BLACK
+			if (level >= 10 && level < 20)Zen.setColor(255, 0, 255); // Color at level 10 turns to PINK
+			if (level >= 20 && level < 30)Zen.setColor(255, 255, 255); // Color at level 20 goes to WHITE
+			if (level >= 30)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 30+ is RANDOM
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
 			Zen.setColor(0, 255, 0);
