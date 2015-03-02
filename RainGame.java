@@ -13,8 +13,8 @@ public class RainGame {
 		int x=0, y=0, dx=0, dy=0, score = 0;
 		String text = "";
 		long startTime =System.currentTimeMillis();
-		int level = 0;
-		int levelcounter = 0;
+		int level = 0; //Initializes level
+		int levelcounter = 0; //Keeps count of numbers completed.
 		
 		Zen.setFont("Helvetica-64");
 		while (Zen.isRunning()) {
@@ -28,8 +28,8 @@ public class RainGame {
 				long elapsed = System.currentTimeMillis() - startTime;
 				startTime = System.currentTimeMillis();
 				score += 3000 / elapsed;
-				levelcounter++;
-				if (levelcounter % 5 == 0) level++;
+				levelcounter++; // Adds to counter
+				if (levelcounter % 5 == 0) level++; //every 5 numbers the level goes up
 			}
 			Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999));
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
