@@ -27,7 +27,7 @@ public class RainGame {
 				startTime = System.currentTimeMillis();
 				score += 3000 / elapsed;
 			}
-			Zen.setColor(255, 0, 255);
+			Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999));
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
 			Zen.setColor(0, 255, 0);
