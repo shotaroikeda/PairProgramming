@@ -10,7 +10,7 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=Zen.getZenHeight() / 2, dx=2, dy=0, score = 0;
+		int x=0, y=Zen.getZenHeight() / 2, dx=1, dy=0, score = 0;
 		String text = "" + (int) (Math.random() * 999); //Initialize text so the score doesn't update without anything done
 		long startTime =System.currentTimeMillis();
 		int level = 0; //Initializes level
@@ -32,6 +32,7 @@ public class RainGame {
 				Zen.drawText(user, Zen.getZenWidth() / 2, 2* Zen.getZenHeight() / 3);
 			}
 			try {
+				if (user.equals("")) user = "1";
 				int leveloffset = Integer.parseInt(user);
 				if (leveloffset <= 0) throw new NumberFormatException();
 				level += leveloffset;
@@ -80,7 +81,7 @@ public class RainGame {
 			if (text.length() == 0) {
 				x = 0;
 				y = Zen.getZenHeight() / 2;
-				dx = 2 + level;		//make sure the text speeds up with level
+				dx = 1 + level;		//make sure the text speeds up with level
 				dy = 0;
 				text = "" + (int) (Math.random() * 999);
 				long elapsed = System.currentTimeMillis() - startTime;
