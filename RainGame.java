@@ -52,9 +52,9 @@ public class RainGame {
 		while (playerAlive) {
 			
 			if (level < 5)Zen.setColor(0, 0, 0); // Color begins at BLACK
-			if (level >= 5 && level < 10)Zen.setColor(255, 0, 255); // Color at level 10 turns to PINK
-			if (level >= 10 && level < 15)Zen.setColor(0, 250, 0); // Color at level 20 goes to CRAZY GREEN
-			if (level >= 15)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 30+ is RANDOM
+			if (level >= 5 && level < 15)Zen.setColor(255, 0, 255); // Color at level 10 turns to PINK
+			if (level >= 15 && level < 25)Zen.setColor(0, 250, 0); // Color at level 20 goes to CRAZY GREEN
+			if (level >= 25)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 30+ is RANDOM
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
 			Zen.setColor(0, 255, 0);
@@ -81,7 +81,7 @@ public class RainGame {
 			if (text.length() == 0) {
 				x = 0;
 				y = Zen.getZenHeight() / 2;
-				dx = 1 + level;		//make sure the text speeds up with level
+				dx = 8 + level;		//make sure the text speeds up with level
 				dy = 0;
 				text = "" + (int) (Math.random() * 999);
 				long elapsed = System.currentTimeMillis() - startTime;
