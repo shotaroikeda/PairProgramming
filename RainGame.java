@@ -10,14 +10,17 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=Zen.getZenHeight() / 2, dx=2, dy=0, score = 0;
+		int x=0, y=Zen.getZenHeight() / 2, dx=100, dy=0, score = 0;
 		String text = "" + (int) (Math.random() * 999); //Initialize text so the score doesn't update without anything done
 		long startTime =System.currentTimeMillis();
 		int level = 0; //Initializes level
 		int levelcounter = 0; //Keeps count of numbers completed.
 		
 		Zen.setFont("Helvetica-64");
-		while (Zen.isRunning()) {
+		
+		boolean playerAlive = Zen.isRunning();
+		
+		while (playerAlive) {
 			Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999));
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
@@ -45,7 +48,7 @@ public class RainGame {
 			if (text.length() == 0) {
 				x = 0;
 				y = Zen.getZenHeight() / 2;
-				dx = 2 + level;
+				dx = 2 + level;		//make sure the text speeds up with level
 				dy = 0;
 				text = "" + (int) (Math.random() * 999);
 				long elapsed = System.currentTimeMillis() - startTime;
@@ -53,6 +56,18 @@ public class RainGame {
 				score += 3000 / elapsed;
 				levelcounter++; // Adds to counter
 				if (levelcounter % 5 == 0) level++; //every 5 numbers the level goes up
+			}
+			
+			//check if the text is offscreen, game over screen
+			if (x > Zen.getZenWidth() || y > Zen.getZenHeight()) {
+				Zen.setColor(255, 255, 255);
+				Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
+				
+				Zen.setColor(255, 0, 0);
+				Zen.drawText("GAME OVER", Zen.getZenWidth() / 5, Zen.getZenHeight() / 3);
+				Zen.setFont("Helvetica-32");
+				Zen.drawText("Press any key to continue...", Zen.getZenWidth() / 5, 2 * Zen.getZenHeight() / 3);
+				playerAlive = false;
 			}
 
 			Zen.flipBuffer(); // Fixes the flicker
