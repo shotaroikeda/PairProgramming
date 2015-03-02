@@ -10,35 +10,22 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=0, dx=0, dy=0, score = 0;
-		String text = "";
+		int x=0, y=Zen.getZenHeight() / 2, dx=2, dy=0, score = 0;
+		String text = "" + (int) (Math.random() * 999); //Initialize text so the score doesn't update without anything done
 		long startTime =System.currentTimeMillis();
 		int level = 0; //Initializes level
 		int levelcounter = 0; //Keeps count of numbers completed.
 		
 		Zen.setFont("Helvetica-64");
 		while (Zen.isRunning()) {
-
-			if (text.length() == 0) {
-				x = 0;
-				y = Zen.getZenHeight() / 2;
-				dx = 2;
-				dy = 0;
-				text = "" + (int) (Math.random() * 999);
-				long elapsed = System.currentTimeMillis() - startTime;
-				startTime = System.currentTimeMillis();
-				score += 3000 / elapsed;
-				levelcounter++; // Adds to counter
-				if (levelcounter % 5 == 0) level++; //every 5 numbers the level goes up
-			}
 			Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999));
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
 			Zen.setColor(0, 255, 0);
 			Zen.drawText(text, x, y);
 			
-			Zen.drawText("Level: " + level,10,60);
-			Zen.drawText("Score: 0",10,130);
+			Zen.drawText("Level: " + level,10,60); //Make sure level is updating
+			Zen.drawText("Score: " + score,10,130); // Make sure score is updating
 			
 			x += dx;
 			y += dy;
@@ -54,9 +41,22 @@ public class RainGame {
 				if(c == text.charAt(0))
 					text = text.substring(1,text.length()); // all except first character
 			}
+			
+			if (text.length() == 0) {
+				x = 0;
+				y = Zen.getZenHeight() / 2;
+				dx = 2 + level;
+				dy = 0;
+				text = "" + (int) (Math.random() * 999);
+				long elapsed = System.currentTimeMillis() - startTime;
+				startTime = System.currentTimeMillis();
+				score += 3000 / elapsed;
+				levelcounter++; // Adds to counter
+				if (levelcounter % 5 == 0) level++; //every 5 numbers the level goes up
+			}
+
 			Zen.flipBuffer(); // Fixes the flicker
 			Zen.sleep(90);// sleep for 90 milliseconds
-
 		}
 	}
 
