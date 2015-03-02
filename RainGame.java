@@ -37,8 +37,8 @@ public class RainGame {
 			Zen.setColor(0, 255, 0);
 			Zen.drawText(text, x, y);
 			
-			Zen.drawText("Level: " + level,10,30);
-			Zen.drawText("Score: 0",10,60);
+			Zen.drawText("Level: " + level,10,60);
+			Zen.drawText("Score: 0",10,130);
 			
 			x += dx;
 			y += dy;
