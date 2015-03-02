@@ -75,7 +75,7 @@ public class RainGame {
 			
 			for(int i=0;i < user.length();i++) {
 				char c = user.charAt(i);
-				if(c == text.charAt(0))
+				if(text.indexOf(c) == 0)
 					text = text.substring(1,text.length()); // all except first character
 			}
 			
