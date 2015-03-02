@@ -11,10 +11,10 @@ public class RainGame {
 		// REMEMBER TO COMMIT this file...
 	
 		int x=0, y=Zen.getZenHeight() / 2, dx=1, dy=0, score = 0;
-		String text = "" + (int) (Math.random() * 999); //Initialize text so the score doesn't update without anything done
+		String text = "" + (int) (Math.random() * 999); // Initialize text so the score doesn't update without anything done
 		long startTime =System.currentTimeMillis();
-		int level = 0; //Initializes level
-		int levelcounter = 0; //Keeps count of numbers completed.
+		int level = 0; // Initializes level
+		int levelcounter = 0; // Keeps count of numbers completed.
 		
 		Zen.setFont("Helvetica-20");
 		boolean playerAlive = Zen.isRunning();
@@ -45,13 +45,13 @@ public class RainGame {
 			}
 			Zen.setEditText("");
 		}
-		
-		
 		// Game Starts After Level is Selected
+		
+		// VVV Game Begins VVV
 		Zen.setFont("Helvetica-64");
 		while (playerAlive) {
 			
-		if (level < 5)Zen.setColor(0, 0, 0); // Color begins at BLACK
+		    if (level < 5)Zen.setColor(0, 0, 0); // Color begins at BLACK
 			if (level >= 5 && level < 15)Zen.setColor(255, 0, 255); // Color at level 5 turns to PINK
 			if (level >= 15 && level < 25)Zen.setColor(0, 250, 0); // Color at level 15 goes to CRAZY GREEN
 			if (level >= 25)Zen.setColor((int) (Math.random() * 999), (int) (Math.random() * 999), (int) (Math.random() * 999)); // Color at level 25+ is RANDOM
@@ -61,7 +61,7 @@ public class RainGame {
 			Zen.drawText(text, x, y);
 			if (level >= 15 && level < 25) Zen.setColor(0, 0, 0); // If crazy green screen, changes color of score and level for clarity
 			
-			Zen.drawText("Level: " + level,10,60); //Make sure level is updating
+			Zen.drawText("Level: " + level,10,60); // Make sure level is updating
 			Zen.drawText("Score: " + score,10,130); // Make sure score is updating
 			
 			x += dx;
@@ -76,23 +76,24 @@ public class RainGame {
 			for(int i=0;i < user.length();i++) {
 				char c = user.charAt(i);
 				if(c == text.charAt(0))
-					text = text.substring(1,text.length()); // all except first character
+					text = text.substring(1,text.length()); // All except first character
 			}
 			
 			if (text.length() == 0) {
 				x = 0;
 				y = Zen.getZenHeight() / 2;
-				dx = 8 + level;		//make sure the text speeds up with level
+				dx = 8 + level;		// Make sure the text speeds up with level
 				dy = 0;
 				text = "" + (int) (Math.random() * 999);
 				long elapsed = System.currentTimeMillis() - startTime;
 				startTime = System.currentTimeMillis();
 				score += 3000 / elapsed;
 				levelcounter++; // Adds to counter
-				if (levelcounter % 5 == 0) level++; //every 5 numbers the level goes up
+				if (levelcounter % 5 == 0) level++; // Every 5 numbers cleared you move up 1 Level
 			}
 			
-			//check if the text is offscreen, game over screen
+			// Check if the text goes off the screen
+			// Shows GAME OVER screen if text goes off the screen
 			if (x > Zen.getZenWidth() || y > Zen.getZenHeight()) {
 				Zen.setColor(255, 255, 255);
 				Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
@@ -107,6 +108,7 @@ public class RainGame {
 			Zen.flipBuffer(); // Fixes the flicker
 			Zen.sleep(90);// sleep for 90 milliseconds
 		}
+		// For GAME OVER screen. Press enter to exit.
 		while (Zen.isRunning()) {
 			if (Zen.isKeyPressed('\n')) {
 				System.exit(0);
