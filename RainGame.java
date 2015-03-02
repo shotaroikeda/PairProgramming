@@ -66,13 +66,19 @@ public class RainGame {
 				Zen.setColor(255, 0, 0);
 				Zen.drawText("GAME OVER", Zen.getZenWidth() / 5, Zen.getZenHeight() / 3);
 				Zen.setFont("Helvetica-32");
-				Zen.drawText("Press any key to continue...", Zen.getZenWidth() / 5, 2 * Zen.getZenHeight() / 3);
+				Zen.drawText("Press ENTER to quit...", Zen.getZenWidth() / 5, 2 * Zen.getZenHeight() / 3);
 				playerAlive = false;
 			}
 
 			Zen.flipBuffer(); // Fixes the flicker
 			Zen.sleep(90);// sleep for 90 milliseconds
 		}
+		while (Zen.isRunning()) {
+			if (Zen.isKeyPressed('\n')) {
+				System.exit(0);
+			}
+		}
+		
 	}
 
 }
